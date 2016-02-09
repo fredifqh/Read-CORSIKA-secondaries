@@ -69,24 +69,24 @@ int main(int argc, char const *argv[]){
 		}
 	}
 
-    for (int i = 0; i < v.size(); ++i){
+/*    for (int i = 0; i < v.size(); ++i){
     	
     	out << energy(v[i][0], 0, v[i][1], v[i][2], v[i][3]) << '\t';// i << v[i][1]  << v[i][2] << -1*v[i][3] << '\t';
     out << endl;
     }	
-
+*/
 
 	//cout << v[0][0] << endl; //Elemento fila cero y columna cero de la matriz 
     //cout << v.size() << endl;  //Número de filas
 
 
                //for para leer toda la matriz//
-/*
+
     for (int i = 0; i < v.size(); i++) { // i para fila             
         for (int j = 0; j < v[i].size(); j++) // j para columna
             cout << v[i][j] << '\t';    
         cout << endl;
     }
-*/ 
+ 
     return 0;
 }
