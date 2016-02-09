@@ -84,8 +84,8 @@ int main(int argc, char const *argv[]){
 
     for (int i = 0; i < v.size(); i++) { // i para fila             
         for (int j = 0; j < v[i].size(); j++) // j para columna
-            cout << v[i][j] << '\t';    
-        cout << endl;
+            out << v[i][j] << '\t';    
+        out << endl;
     }
  
     return 0;
