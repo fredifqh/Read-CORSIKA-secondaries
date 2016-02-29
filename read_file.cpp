@@ -12,9 +12,9 @@
 
 using namespace std;
 
-const double MASS_ELEC = 0.000510998928;
-const double MASS_MUON = 0.105658369;
-const double MASS_PHOT = 0;
+//const double MASS_ELEC = 0.000510998928;
+//const double MASS_MUON = 0.105658369;
+//const double MASS_PHOT = 0;
 
 double energy(double id_particle, double mass, double p_x, double p_y, double p_z){
 	
@@ -34,33 +34,40 @@ double distance(double pos_x, double pos_y){
 	return pow(pos_x, 2) + pow(pos_y, 2);
 }
 
+struct resta_vectores{
+	double vectorA;
+	double vectorB;
+};
 
 int main(int argc, char const *argv[]){
 	
+
 	string program_name = argv[0];
-	string file_name = argv[1];
+	//string file_name = argv[1];
 	
-	ifstream in("secundarios.sec");
+	ifstream in(argv[1]);
 	ofstream out("result.dat");
 
 	out.setf(std::ios::scientific);
 	out.setf(std::ios::showpos);
 	out.precision(7);
-
+	
+	int rank, size;
+	
 	vector<vector<double> > v;
 
 	if (in){
 		
-		string line;
-		
+		string line; 
+		int i = 0;
 		while (getline(in, line)){
 			if (line[0] != '#'){
 				v.push_back(vector<double>());
 				stringstream split(line);
 				double value;
-
-				while (split >> value)
+				while (split >> value){
 					v.back().push_back(value);
+				}			
 			}
 		}
 	}
@@ -70,6 +77,6 @@ int main(int argc, char const *argv[]){
             out << v[i][j] << '\t';    
         out << endl;
     }
- 
+
     return 0;
 }
