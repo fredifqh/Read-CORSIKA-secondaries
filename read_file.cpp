@@ -47,30 +47,36 @@ double r_sq = pow(x, 2) + pow(y, 2);
 return sqrt (r_sq);
 }
 
-
-
 double distance(double pos_x, double pos_y){
 	return pow(pos_x, 2) + pow(pos_y, 2);
 }
 
 int main(int argc, char const *argv[]){
 
-
 	if (argc < 2)
 	{
 	cerr << "input the name of file\n"<< endl;
 	}
+
 	string program_name = argv[0];
-	//string file_name = argv[1];
-	
-
 	ifstream in(argv[1]);
-	ofstream out("result.dat");
 
-	out.setf(std::ios::scientific);
-	out.setf(std::ios::showpos);
-	out.precision(7);
+	ofstream out_tanque1("tanque1.dat");
+	ofstream out_tanque2("tanque2.dat");
+	ofstream out_tanque3("tanque3.dat");		
+
+	out_tanque1.setf(std::ios::scientific);
+	out_tanque1.setf(std::ios::showpos);
+	out_tanque1.precision(7);
+
+	out_tanque2.setf(std::ios::scientific);
+	out_tanque2.setf(std::ios::showpos);
+	out_tanque2.precision(7);
 	
+	out_tanque3.setf(std::ios::scientific);
+	out_tanque3.setf(std::ios::showpos);
+	out_tanque3.precision(7);
+
 	int rank, size;
 	
 	vector<vector<double> > v;
@@ -96,18 +102,19 @@ Point tanque_2 = {-COORD_DETEC_X, -COORD_DETEC_Y};
 Point tanque_3 = { COORD_DETEC_X, -COORD_DETEC_Y};
 
 for (int i = 0; i < v.size(); i++) { 
-  Point position = {(v[i][4])/100, (v[i][5])/100};
-  if (Distance(position, tanque_1) < RADIO_DETEC || Distance(position, tanque_2) < RADIO_DETEC || Distance(position, tanque_3) < RADIO_DETEC)
- out <<  v[i][4] << "    "<<v[i][5] << endl;
+	
+	Point position = {(v[i][4])/100, (v[i][5])/100};
+	
+	if (Distance(position, tanque_1) < RADIO_DETEC){
+		out_tanque1 <<  v[i][4] << "   "<<v[i][5] << endl;	
+	}
+	if (Distance(position, tanque_2) < RADIO_DETEC){
+		out_tanque2 <<  v[i][4] << "   "<<v[i][5] << endl;
+	}
+	if (Distance(position, tanque_3) < RADIO_DETEC){
+ 		out_tanque3 <<  v[i][4] << "   "<<v[i][5] << endl;
+	}
 }
 
-// los siguientes for se usan para leer toda la matriz
-/*
-    for (int i = 0; i < v.size(); i++) { // i para fila             
-        for (int j = 0; j < v[i].size(); j++) // j para columna
-            out << v[i][j] << '\t';    
-        out << endl;
-    }
-*/
 return 0;
 }
